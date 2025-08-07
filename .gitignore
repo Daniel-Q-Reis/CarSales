@@ -205,3 +205,17 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Django specific
+*.log
+db.sqlite3
+db.sqlite3-journal
+/media/
+/static_root/
+/staticfiles/
+
+# Python environment
+.env
+venv/
+env/
+.venv/
