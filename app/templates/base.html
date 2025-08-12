@@ -2,109 +2,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CarSales{% endblock %}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
-
-  <style>
-    body {
-        font-family: 'Open Sans', sans-serif;
-        background-color: #f7f7f7;
-        color: #333;
-        margin: 0;
-        padding: 0;
-    }
-
-    header {
-        background-color: #0096c7;
-        color: #fff;
-        text-align: center;
-    }
-
-    footer {
-        background-color: #ccc;
-        color: #333;
-        padding: 20px;
-        text-align: center;
-    }
-
-    nav {
-        background-color: #0096c7;
-        color: #fff;
-        height: 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
-
-    nav ul li {
-        margin: 0 10px;
-    }
-
-    nav ul li a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 16px;
-        padding: 15px;
-        transition: all 0.3s ease;
-    }
-
-    nav ul li a:hover {
-        background-color: #32bbe8;
-    }
-
-    nav ul li.active a {
-        background-color: #666;
-    }
-
-    nav ul li.active a:hover {
-        background-color: #999;
-    }
-
-  </style>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        {% if user.is_authenticated %}
-          <li>Hello, {{ user.username }}</li>
-          <li><a href="{% url 'new_car' %}">Add Car</a></li>
-        {% else %}
-          <li><a href="{% url 'register' %}">Register</a></li>
-          <li><a href="{% url 'login' %}">Login</a></li>
-        {% endif %}
-        <li><a href="{% url 'cars_list' %}">Cars</a></li>
-      </ul>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{% url 'cars_list' %}">CarSales</a>
+            </div>
+            <ul>
+                <li><a href="{% url 'cars_list' %}">Cars</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'new_car' %}">Add Car</a></li>
+                {% else %}
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li class="user-greeting">Hello, {{ user.username }}</li>
+                    <li>
+                        <a href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
 
-      <ul>
-        {% if user.is_authenticated %}
-          <li>
-            <a href="{% url 'logout' %}">
-              <i class="fas fa-sign-out-alt"></i> Logout </a>
-            </li>
-        {% endif %}
-      </ul>
-    </nav>
-  </header>
+    <main>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
 
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
-
-  <footer>
-    <p>&copy; 2025 CarSales MultiBrands</p>
-  </footer>
+    <footer>
+        <p>&copy; 2025 CarSales MultiBrands</p>
+    </footer>
 </body>
 </html>
