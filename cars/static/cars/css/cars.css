@@ -1,0 +1,61 @@
+/* /cars/static/cars/css/cars.css */
+
+/* Main container for the car creation form */
+.car-form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden; /* Important for the child's border-radius to work */
+}
+
+/* Styles for the new form header */
+.form-header {
+    background-color: var(--primary-color); /* Dark blue from your theme */
+    padding: 20px 40px;
+}
+
+.form-header h2 {
+    color: var(--text-color); /* Light text from your theme */
+    text-align: center;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Styles for the form body, now containing the padding */
+.form-body {
+    padding: 30px 40px;
+}
+
+/* Styles for each row in the form (label + input) */
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--accent-color);
+}
+
+/* General styles for all inputs and select fields */
+.form-row input,
+.form-row select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box; /* Ensures padding does not affect width */
+    transition: border-color 0.3s ease;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+}
+
+/* The submit button reuses the .register-btn style from accounts.css */
