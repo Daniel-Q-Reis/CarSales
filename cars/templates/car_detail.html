@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ car.brand.name }} {{ car.model }} - CarSales{% endblock %}
+
+{% block content %}
+<div class="car-detail-container">
+    <div class="detail-photo">
+        {% if car.photo %}
+            <img src="{{ car.photo.url }}" alt="{{ car.brand.name }} {{ car.model }}">
+        {% else %}
+            <div class="no-photo-detail">
+                <i class="fas fa-camera"></i>
+                <p>Photo not available</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="detail-info">
+        <h1>{{ car.brand.name }} {{ car.model }}</h1>
+        <p class="car-price">R$ {{ car.value|floatformat:2 }}</p>
+
+        <ul class="spec-list">
+            <li>
+                <strong>Factory Year:</strong>
+                <span>{{ car.factory_year }}</span>
+            </li>
+            <li>
+                <strong>Model Year:</strong>
+                <span>{{ car.model_year }}</span>
+            </li>
+            <li>
+                <strong>Plate:</strong>
+                <span>{{ car.plate|upper }}</span>
+            </li>
+        </ul>
+        
+        <div class="buttons-container">
+            {% if user.is_authenticated %}
+                <a href="{% url 'car_update' pk=car.pk %}" class="btn btn-primary">Edit</a>
+
+                <a href="{% url 'car_delete' pk=car.pk %}" class="btn btn-danger">Delete</a>
+            {% else %}
+                <a href="#" class="btn btn-contact">Contact Seller</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
