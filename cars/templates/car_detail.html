@@ -32,6 +32,12 @@
                 <strong>Plate:</strong>
                 <span>{{ car.plate|upper }}</span>
             </li>
+            {% if object.bio %}
+                <li>
+                    <strong>Description:</strong>
+                    <span>{{ car.bio }}</span>
+                </li>
+            {% endif %}
         </ul>
         
         <div class="buttons-container">
